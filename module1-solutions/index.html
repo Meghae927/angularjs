@@ -2,10 +2,28 @@
 <html>
 <head>
 	<title></title>
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular.min.js"></script>
 </head>
 <body>
-<h3>hello world</h3>
-<h4>my first project in angualr</h4>
 
+<div ng-app="myapp" ng-controller="lunchcontroller">
+<h5>Enter Lunch Items</h5>
+<input type="text" ng-model="lunchitem"/>
+<button type="button" ng-click="Checklunch()">Check If Too Much</button>
+</div>
+<script type="text/javascript">
+(function(){
+	'use strict';
+	angular.module('myapp', [])
+	       .controller('lunchcontroller',lunchcontroller);
+	        lunchcontroller.$inject = ['$scope'];
+	        function lunchcontroller($scope){
+	        	$scope.Checklunch = function(){
+	        		alert('inside');
+                    $
+	        	}; 
+	        }
+})();
+</script>
 </body>
 </html>
