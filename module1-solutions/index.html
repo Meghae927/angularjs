@@ -2,14 +2,31 @@
 <html>
 <head>
 	<title></title>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular.min.js"></script>
+<style type="text/css">
+.msg{
+padding: 10px 2px 2px 2px;
+    font-weight: bold;
+}
+</style>
 </head>
 <body>
-
+<div class="container">
+<br/>
+<br/>
 <div ng-app="myapp" ng-controller="lunchcontroller">
-<h5>Enter Lunch Items</h5>
-<input type="text" ng-model="lunchitem"/>
-<button type="button" ng-click="Checklunch()">Check If Too Much</button>
+<div class="form-group">
+<label>Enter Lunch Items</label>
+<input type="text" class="form-control" ng-model="lunchitem" placeholder="eg.pizza,burger,fries" />
+<p ng-bind ="message" class="msg"></p>
+<button type="button" class="btn btn-info" ng-click="Checklunch()">Check If Too Much</button>
+</div>
+</div>
 </div>
 <script type="text/javascript">
 (function(){
@@ -17,10 +34,23 @@
 	angular.module('myapp', [])
 	       .controller('lunchcontroller',lunchcontroller);
 	        lunchcontroller.$inject = ['$scope'];
+
 	        function lunchcontroller($scope){
+	        	$scope.lunchitem = '';
+
+
 	        	$scope.Checklunch = function(){
-	        		alert('inside');
-                    $
+
+                  $scope.lunchitemArray = $scope.lunchitem.split(','); 
+                  if($scope.lunchitem == ''){
+                  	   $scope.message = "Please enter lunch items."
+                  }
+                  else if($scope.lunchitemArray.length>3){
+                       $scope.message = "Too much!."
+                   }
+                   else{
+                   	  $scope.message = "Enjoy."
+                   }
 	        	}; 
 	        }
 })();
